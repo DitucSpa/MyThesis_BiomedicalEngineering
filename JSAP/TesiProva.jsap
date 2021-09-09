@@ -86,7 +86,7 @@
 
 "INSERT_WARD": { 
 
-"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Hospital_Ward> {?Hospital_Ward rdf:type sha:Hospital_Ward ; sha:wardName ?wardName}}", 
+"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Hospital_Ward> {_:WARD rdf:type sha:Hospital_Ward ; sha:wardName ?wardName}}", 
 
 "forcedBindings": { 
 
@@ -157,6 +157,11 @@
 
 "QUERY_PATIENT_FISCAL_CODE": {
 "sparql": "SELECT ?cf WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {?p rdf:type schema:Patient ; sha:fiscalCode ?cf}}"
+},
+
+
+"QUERY_WARD": {
+"sparql": "SELECT ?ward WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Hospital_Ward> {?hospital_ward rdf:type sha:Hospital_Ward ; sha:wardName ?ward}}"
 }
 
 

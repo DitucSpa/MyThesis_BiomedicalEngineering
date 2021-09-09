@@ -22,9 +22,28 @@ from sepy.SEPA import *
 
 
 # Open the jsap and connection
-mySAP = open(r"C:\Users\Ovettino\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP\TesiProva.jsap","r") # CHANGE DIRECTORY
+mySAP = open(r"C:\Users\gianl\Documents\GitHub\MyThesis_BiomedicalEngineering\JSAP\TesiProva.jsap","r") # CHANGE DIRECTORY
 sap = SAPObject(json.load(mySAP))
 sc = SEPA(sapObject=sap)
+
+result = sc.query("QUERY_WARD")
+str1 = json.dumps(result)
+# the follow lines are used for extrapolating only the values
+str1 = str1.replace(" ","").replace('"value":"',"&&&").replace("{","").replace("}","").replace(",","\n")
+text_file = open("Output.txt", "w")
+text_file.write(str1)
+text_file.close()
+with open("Output.txt","r") as fin:
+    with open("input.txt","w") as fout:
+        for line in fin:
+            if line.startswith('&&&'):
+                fout.write(line)
+            else:
+                fout.write("")
+with open("input.txt","r") as file:
+    ward = file.read().replace("&&&","").replace("[","").replace("]","").replace('"',"")
+os.remove("input.txt")
+os.remove("output.txt ")
 
 # other declarations
 f = ('Times', 14) # the font of the program
@@ -57,6 +76,11 @@ var_sesso = StringVar()
 sesso = ('Maschio', 'Femmina', 'Altro')
 var_sesso.set(sesso[0]) # default --> first value
 
+# list of ward option menu
+var_ward = StringVar()
+h_ward = ward.replace("\n","|").split("|")
+var_ward.set(h_ward[0]) # default --> first value
+
 # list of role option menu
 var_ruolo = StringVar()
 ruolo = ('Doctor', 'Head Nurse', 'Head Physician', 'Nurse')
@@ -67,6 +91,12 @@ input_sesso = OptionMenu(frame, var_sesso, *sesso)
 input_sesso["menu"].config(bg=background_frame) # change color
 input_sesso.config(width=15, font=f, bg=background_frame, activebackground=background_frame)
 input_sesso["highlightthickness"]= 0 # disable the color of the background
+
+# declaration of the role option menu
+input_ward = OptionMenu(frame, var_ward, *h_ward)
+input_ward["menu"].config(bg=background_frame) # change color
+input_ward.config(width=15, font=f, bg=background_frame, activebackground=background_frame)
+input_ward["highlightthickness"]= 0 # disable the color of the background
 
 # declaration of the role option menu
 input_ruolo = OptionMenu(frame, var_ruolo, *ruolo)
@@ -97,7 +127,7 @@ input_eta = Entry(frame, font=f)
 input_cod_fis = Entry(frame, font=f)
 input_email = Entry(frame, font=f)
 input_recapito = Entry(frame, font=f)
-input_reparto = Entry(frame, font=f)
+#input_reparto = Entry(frame, font=f)
 
 
 # position of the text box in the left frame
@@ -107,7 +137,7 @@ input_sesso.grid(row=2, column=1, pady=10, padx=20)
 input_cod_fis.grid(row=3, column=1, pady=10, padx=20)
 input_email.grid(row=4, column=1, pady=10, padx=20)
 input_recapito.grid(row=5, column=1, pady=10, padx=20)
-input_reparto.grid(row=6, column=1, pady=10, padx=20)
+input_ward.grid(row=6, column=1, pady=10, padx=20)
 input_ruolo.grid(row=7, column=1, pady=10, padx=20)
 
 # position of the frames
@@ -137,7 +167,7 @@ def check_cod_fis():
     os.remove("output.txt ")
     # check if fiscal code already exists
     if input_cod_fis.get().upper() in data:
-        Mbox('Attenzione!', "L'utente già esiste", 1)
+        Mbox('Attenzione!', "L'utente già esiste")
     else:
         # SPARQL insert
         sc.update("INSERT_HEALTH_WORKER_FISCAL_CODE",
@@ -177,16 +207,12 @@ def controllo():
     if not (input_recapito.get().isnumeric()):
         Mbox('Attenzione!', 'Numero di telefono non valido.')
         return
-    # check ward
-    if len(input_reparto.get()) == 0:
-        Mbox('Attenzione!', 'Reparto non valido.')
-        return
     # message box with all parametres
-    stringa = 'I dati inviati saranno:\n'
+    stringa = 'I seguenti dati sono corretti?\n'
     stringa = stringa + '\n' + input_nome_cognome.get().upper() + '\n' + input_eta.get() + '\n' + var_sesso.get()
     stringa = stringa + '\n' + input_cod_fis.get().upper() + '\n' + input_email.get().lower() + '\n' + input_recapito.get()
-    stringa = stringa + '\n' + input_reparto.get() + '\n' + var_ruolo.get() + '\n' + input_stanza.get() + '\n' + text_area.get("1.0", "end-1c")
-    result = messagebox.askquestion("Attenzione...", "I dati sono corretti?", icon = 'question')
+    stringa = stringa + '\n' + var_ward.get() + '\n' + var_ruolo.get() + '\n' + '\n' + text_area.get("1.0", "end-1c")
+    result = messagebox.askquestion("Attenzione...", stringa, icon = 'question')
     if result == 'yes':
             check_cod_fis() # Does fiscal code already exist in the OWL? And then program uploads dates on OWL
     else:
