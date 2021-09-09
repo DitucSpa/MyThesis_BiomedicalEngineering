@@ -84,6 +84,20 @@
 }, 
 
 
+"INSERT_WARD": { 
+
+"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Hospital_Ward> {?Hospital_Ward rdf:type sha:Hospital_Ward ; sha:wardName ?wardName}}", 
+
+"forcedBindings": { 
+
+"wardName": { 
+
+"type": "literal", 
+
+"value": "Cardiologia" 
+}
+} 
+}, 
 
 
 "INSERT_PATIENT_FISCAL_CODE": { 
