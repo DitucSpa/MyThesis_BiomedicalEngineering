@@ -114,12 +114,15 @@
 
 "queries": { 
 
-"QUERY": { 
+"QUERY_ALL": { 
 
 "sparql": "SELECT * WHERE {graph ?g { ?s ?p ?o }}" 
 
-} 
+},
+"QUERY_FISCAL_CODE": {
+"sparql": "SELECT ?cf WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {?p rdf:type schema:Patient ; sha:fiscalCode ?cf}}"
 
 } 
 
 } 
+}
