@@ -1,0 +1,125 @@
+{
+	"host": "localhost",
+	"oauth": {
+		"enable": false
+	},
+	"sparql11protocol": {
+		"protocol": "http",
+		"port": 8000,
+		"query": {
+			"path": "/query",
+			"method": "POST",
+			"format": "JSON"
+		},
+		"update": {
+			"path": "/update",
+			"method": "POST",
+			"format": "JSON"
+		}
+	},
+	"sparql11seprotocol": {
+		"protocol": "ws",
+		"reconnect" : true,
+		"availableProtocols": {
+			"ws": {
+				"port": 9000,
+				"path": "/subscribe"
+			},
+			"wss": {
+				"port": 9443,
+				"path": "/secure/subscribe"
+			}
+		}
+	},
+    "graphs": { 
+
+"default-graph-uri": [], 
+
+"using-graph-uri": [] 
+
+}, 
+
+"namespaces": { 
+
+"schema": "http://schema.org/", 
+
+"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#", 
+
+"sha": "http://unibo.it/ontology/SmartHospitalAssistant#"
+
+}, 
+
+
+
+
+"updates": 
+{ 
+
+
+
+
+"INSERT_PATIENT_NAME":{
+
+"sparql": "INSERT {graph <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {?patient rdf:type schema:Patient ; sha:givenName ?givenName ; sha:fiscalCode ?fiscalCode}} WHERE {graph <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {?patient sha:fiscalCode ?fiscalCode ; rdf:type schema:Patient}}", 
+
+"forcedBindings": { 
+
+"fiscalCode": { 
+
+"type": "literal", 
+
+"value": "A" 
+
+},
+"givenName": { 
+
+"type": "literal", 
+
+"value": "B" 
+
+}
+
+} 
+
+}, 
+
+
+
+
+"INSERT_FISCAL_CODE": { 
+
+"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {_:XYZ rdf:type schema:Patient ; sha:fiscalCode ?fiscalCode}}", 
+
+"forcedBindings": { 
+
+"fiscalCode": { 
+
+"type": "literal", 
+
+"value": "" 
+
+}
+
+} 
+
+}, 
+
+"DELETE_ALL": { 
+
+"sparql": "DELETE {graph ?g {?s ?p ?o}} WHERE {graph ?g {?s ?p ?o}}" 
+
+} 
+
+}, 
+
+"queries": { 
+
+"QUERY": { 
+
+"sparql": "SELECT * WHERE {graph ?g { ?s ?p ?o }}" 
+
+} 
+
+} 
+
+} 
