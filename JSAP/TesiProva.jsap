@@ -86,7 +86,7 @@
 
 
 
-"INSERT_FISCAL_CODE": { 
+"INSERT_PATIENT_FISCAL_CODE": { 
 
 "sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {_:XYZ rdf:type schema:Patient ; sha:fiscalCode ?fiscalCode}}", 
 
@@ -96,13 +96,28 @@
 
 "type": "literal", 
 
-"value": "" 
-
+"value": "XXX" 
 }
-
 } 
-
 }, 
+
+
+"INSERT_HEALTH_WORKER_FISCAL_CODE": { 
+
+"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Health_Worker> {_:ZYX rdf:type sha:Health_Worker ; sha:fiscalCode ?fiscalCode}}", 
+
+"forcedBindings": { 
+
+"fiscalCode": { 
+
+"type": "literal", 
+
+"value": "XXX" 
+}
+} 
+},
+
+
 
 "DELETE_ALL": { 
 
@@ -119,10 +134,17 @@
 "sparql": "SELECT * WHERE {graph ?g { ?s ?p ?o }}" 
 
 },
-"QUERY_FISCAL_CODE": {
-"sparql": "SELECT ?cf WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {?p rdf:type schema:Patient ; sha:fiscalCode ?cf}}"
 
-} 
+
+"QUERY_HEALTH_WORKER_FISCAL_CODE": {
+"sparql": "SELECT ?cf WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Health_Worker> {?p rdf:type sha:Health_Worker ; sha:fiscalCode ?cf}}"
+},
+
+
+"QUERY_PATIENT_FISCAL_CODE": {
+"sparql": "SELECT ?cf WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {?p rdf:type schema:Patient ; sha:fiscalCode ?cf}}"
+}
+
 
 } 
 }

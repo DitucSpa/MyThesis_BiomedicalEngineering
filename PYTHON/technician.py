@@ -3,7 +3,16 @@ import ctypes
 import re
 import datetime
 from datetime import date
+from sepy.SAPObject import *
+from sepy import *
+import json
+from sepy.SEPA import *
+import os
 
+
+mySAP = open(r"C:\Users\gianl\Documents\GitHub\MyThesis_BiomedicalEngineering\JSAP\TesiProva.jsap","r")
+sap = SAPObject(json.load(mySAP))
+sc = SEPA(sapObject=sap)
 f = ('Times', 14) # font
 background_frame = "#80b3ff"
 background_window = "#b3ccff"
@@ -60,12 +69,13 @@ Label(frame, text="Stanza", font=f, bg=background_frame).grid(row=8, column=0, s
 
 # dichiarazione delle text box
 input_nome_cognome = Entry(frame, font=f)
+input_eta = Entry(frame, font=f)
+input_cod_fis = Entry(frame, font=f)
 input_email = Entry(frame, font=f)
 input_recapito = Entry(frame, font=f)
-input_eta = Entry(frame, font=f)
 input_reparto = Entry(frame, font=f)
 input_stanza = Entry(frame, font=f)
-input_cod_fis = Entry(frame, font=f)
+
 
 # dichiarazione dell'option meù del sesso
 input_sesso = OptionMenu(frame, var_sesso, *sesso)
@@ -99,7 +109,32 @@ frame2.place(x=650, y=50)
 # quando il tecnico clicca sul btn, si avvia un controllo dei dati
 def crea():
     controllo()
+    check_cod_fis()
 
+
+def check_cod_fis():
+    result = sc.query("QUERY_HEALTH_WORKER_FISCAL_CODE")
+    str1 = json.dumps(result)
+    str1 = str1.replace(" ","").replace('"value":"',"&&&").replace("{","").replace("}","").replace(",","\n")
+    text_file = open("Output.txt","w")
+    text_file.write(str1)
+    text_file.close()
+    with open("Output.txt","r") as fin:
+        with open("input.txt","w") as fout:
+            for line in fin:
+                if line.startswith('&&&'):
+                    fout.write(line)
+                else:
+                    fout.write("")
+    with open("input.txt","r") as file:
+        data = file.read().replace("&&&","").replace("[","").replace("]","").replace('"',"")
+    os.remove("input.txt")
+    os.remove("output.txt ")
+    if input_cod_fis.get().upper() in data:
+        Mbox('Attenzione!', "L'utente già esiste", 1)
+    else:
+        sc.update("INSERT_HEALTH_WORKER_FISCAL_CODE",
+            forcedBindings={"fiscalCode": input_cod_fis.get().upper()})
 
 # metodo per il controllo dei dati
 def controllo():
@@ -139,7 +174,7 @@ def controllo():
         Mbox('Attenzione!', 'Reparto o Stanza non validi.', 1)
         return
     # se tutto va a buon fine, invia i dati
-    inviadati()
+    #inviadati()
 
 # i dati che poi devono essere inviati con SPAEQL
 def inviadati():
