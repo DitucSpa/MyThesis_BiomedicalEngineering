@@ -31,127 +31,327 @@
 			}
 		}
 	},
-    "graphs": { 
+    "graphs": {
 
-"default-graph-uri": [], 
+"default-graph-uri": [],
 
-"using-graph-uri": [] 
+"using-graph-uri": []
 
-}, 
+},
 
-"namespaces": { 
+"namespaces": {
 
-"schema": "http://schema.org/", 
+"schema": "http://schema.org/",
 
-"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#", 
+"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
 
 "sha": "http://unibo.it/ontology/SmartHospitalAssistant#"
 
-}, 
-
-
-
-
-"updates": 
-{ 
-
-
-
-
-"INSERT_PATIENT_NAME":{
-
-"sparql": "INSERT {graph <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {?patient rdf:type schema:Patient ; sha:givenName ?givenName ; sha:fiscalCode ?fiscalCode}} WHERE {graph <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {?patient sha:fiscalCode ?fiscalCode ; rdf:type schema:Patient}}", 
-
-"forcedBindings": { 
-
-"fiscalCode": { 
-
-"type": "literal", 
-
-"value": "A" 
-
-},
-"givenName": { 
-
-"type": "literal", 
-
-"value": "B" 
-
-}
-
-} 
-
-}, 
-
-
-"INSERT_WARD": { 
-
-"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Hospital_Ward> {_:WARD rdf:type sha:Hospital_Ward ; sha:wardName ?wardName}}", 
-
-"forcedBindings": { 
-
-"wardName": { 
-
-"type": "literal", 
-
-"value": "Cardiologia" 
-}
-} 
-}, 
-
-
-"INSERT_PATIENT_FISCAL_CODE": { 
-
-"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {_:XYZ rdf:type schema:Patient ; sha:fiscalCode ?fiscalCode}}", 
-
-"forcedBindings": { 
-
-"fiscalCode": { 
-
-"type": "literal", 
-
-"value": "XXX" 
-}
-} 
-}, 
-
-
-"INSERT_HEALTH_WORKER_FISCAL_CODE": { 
-
-"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Health_Worker> {_:ZYX rdf:type sha:Health_Worker ; sha:fiscalCode ?fiscalCode}}", 
-
-"forcedBindings": { 
-
-"fiscalCode": { 
-
-"type": "literal", 
-
-"value": "XXX" 
-}
-} 
 },
 
 
 
-"DELETE_ALL": { 
 
-"sparql": "DELETE {graph ?g {?s ?p ?o}} WHERE {graph ?g {?s ?p ?o}}" 
+"updates":
+{
 
-} 
 
-}, 
-
-"queries": { 
-
-"QUERY_ALL": { 
-
-"sparql": "SELECT * WHERE {graph ?g { ?s ?p ?o }}" 
-
+"INSERT_PATIENT": {
+"sparql": "INSERT {graph <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {?h rdf:type schema:Patient ; sha:givenName ?givenName ; sha:address ?address ; sha:familyName ?familyName ; sha:birthDate ?birthDate ; sha:birthPlace ?birthPlace ; sha:email ?email ; sha:gender ?gender ; sha:phoneNumber ?phoneNumber ; sha:nation ?nation ; sha:residence ?residence ; sha:fiscalCode ?fiscalCode}} WHERE {graph <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {?h sha:fiscalCode ?fiscalCode ; rdf:type schema:Patient}}",
+"forcedBindings": {
+"fiscalCode": {
+"type": "literal",
+"value": "XXX"
+},
+"givenName": {
+"type": "literal",
+"value": "GIANLUCA"
+},
+"familyName": {
+"type": "literal",
+"value": "DI_TUCCIO"
+},
+"address": {
+"type": "literal",
+"value": "Via Natale 20"
+},
+"birthDate": {
+"type": "literal",
+"value": "2000/10/10T00:00:00"
+},
+"birthPlace": {
+"type": "literal",
+"value": "CESENA"
+},
+"email": {
+"type": "literal",
+"value": "gianluca@outlook.it"
+},
+"gender": {
+"type": "literal",
+"value": "Maschio"
+},
+"phoneNumber": {
+"type": "literal",
+"value": "333333"
+},
+"nation": {
+"type": "literal",
+"value": "ITALY"
+},
+"residence": {
+"type": "literal",
+"value": "CESENA"
+}
+}
 },
 
 
-"QUERY_HEALTH_WORKER_FISCAL_CODE": {
-"sparql": "SELECT ?cf WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Health_Worker> {?p rdf:type sha:Health_Worker ; sha:fiscalCode ?cf}}"
+"INSERT_MEDICAL_STAFF":{
+"sparql": "INSERT {graph <http://unibo.it/ontology/SmartHospitalAssistant/Medical_Staff> {?h rdf:type sha:Medical_Staff ; sha:givenName ?givenName ; sha:address ?address ; sha:familyName ?familyName ; sha:birthDate ?birthDate; sha:birthPlace ?birthPlace ; sha:email ?email ; sha:emailWork ?workMail ; sha:gender ?gender ; sha:role ?role; sha:timeSchedule ?timeSchedule ; sha:phoneNumber ?phoneNumber ; sha:phoneNumberWork ?workPhone ; sha:studio ?studio ; sha:otherWorker ?otherWorker ; sha:wardName ?wardName ; sha:fiscalCode ?fiscalCode}} WHERE {graph <http://unibo.it/ontology/SmartHospitalAssistant/Medical_Staff> {?h sha:fiscalCode ?fiscalCode ; rdf:type sha:Medical_Staff}}",
+"forcedBindings": {
+"fiscalCode": {
+"type": "literal",
+"value": "XXX"
+},
+"givenName": {
+"type": "literal",
+"value": "Gianluca"
+},
+"familyName": {
+"type": "literal",
+"value": "Di_Tuccio"
+},
+"address": {
+"type": "literal",
+"value": "Via Natale 20"
+},
+"birthDate": {
+"type": "literal",
+"value": "2000/10/10T00:00:00"
+},
+"birthPlace": {
+"type": "literal",
+"value": "Cesena"
+},
+"email": {
+"type": "literal",
+"value": "gianluca@outlook.it"
+},
+"workMail": {
+"type": "literal",
+"value": "gianluca@outlook.it"
+},
+"gender": {
+"type": "literal",
+"value": "Maschio"
+},
+"phoneNumber": {
+"type": "literal",
+"value": "333333"
+},
+"workPhone": {
+"type": "literal",
+"value": "333333"
+},
+"wardName": {
+"type": "literal",
+"value": "Cardiologia"
+},
+"role": {
+"type": "literal",
+"value": "Doctor"
+},
+"studio": {
+"type": "literal",
+"value": "Stanza 5"
+},
+"otherWorker": {
+"type": "literal",
+"value": "Nothing"
+},
+"timeSchedule": {
+"type": "literal",
+"value": "Lunedi dalle 8 alle 9"
+}
+}
+},
+
+
+"INSERT_WARD": {
+"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Hospital_Ward> {_:WARD rdf:type sha:Hospital_Ward ; sha:wardName ?wardName}}",
+"forcedBindings": {
+"wardName": {
+"type": "literal",
+"value": "Cardiologia"
+}
+}
+},
+
+
+"INSERT_CCE_COMUNE": {
+"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/General_Section> {_:GS rdf:type sha:General_Section ; sha:id ?id ; sha:fiscalCode ?cf ; sha:allergie ?allergie ; sha:terapia ?terapia ; sha:bloodgroup ?blood ; sha:longDiseas ?diseas ; sha:resume ?resume ; sha:creationComune ?creation ; sha:modifyComune ?modify}}",
+"forcedBindings": {
+"cf": {
+"type": "literal",
+"value": "XXX"
+},
+"id": {
+"type": "literal",
+"value": "1"
+},
+"diseas": {
+"type": "literal",
+"value": "Nothing"
+},
+"blood": {
+"type": "literal",
+"value": "A+"
+},
+"resume": {
+"type": "literal",
+"value": "Nothing"
+},
+"allergie": {
+"type": "literal",
+"value": "Nothing"
+},
+"terapia": {
+"type": "literal",
+"value": "Nothing"
+},
+"creation": {
+"type": "literal",
+"value": "Never"
+},
+"modify": {
+"type": "literal",
+"value": "Never"
+}
+}
+},
+
+
+"INSERT_CCE_SPECIFICA": {
+"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Ward_Section> {_:WS rdf:type sha:Ward_Section ; sha:id ?id ; sha:fiscalCode ?cf ; sha:plan ?plan ; sha:exam ?exam ; sha:dimission ?dimission ; sha:creationSpecifica ?creation ; sha:modifySpecifica ?modify}}",
+"forcedBindings": {
+"cf": {
+"type": "literal",
+"value": "XXX"
+},
+"id": {
+"type": "literal",
+"value": "1"
+},
+"exam": {
+"type": "literal",
+"value": "Nothin"
+},
+"plan": {
+"type": "literal",
+"value": "Nothing"
+},
+"dimission": {
+"type": "literal",
+"value": "Nothing"
+},
+"creation": {
+"type": "literal",
+"value": "Never"
+},
+"modify": {
+"type": "literal",
+"value": "Never"
+}
+}
+},
+
+
+"INSERT_DIAGNOSI":{
+"sparql": "INSERT {graph <http://unibo.it/ontology/SmartHospitalAssistant/Ward_Section> {?h rdf:type sha:Ward_Section ; sha:diagn ?diagn ; sha:fiscalCode ?fiscalCode}} WHERE {graph <http://unibo.it/ontology/SmartHospitalAssistant/Ward_Section> {?h sha:fiscalCode ?fiscalCode ; rdf:type sha:Ward_Section}}",
+"forcedBindings": {
+"fiscalCode": {
+"type": "literal",
+"value": "XXX"
+},
+"diagn": {
+"type": "literal",
+"value": "001"
+}
+}
+},
+
+
+"INSERT_PATIENT_FISCAL_CODE": {
+"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Patient> {_:XYZ rdf:type schema:Patient ; sha:fiscalCode ?fiscalCode}}",
+"forcedBindings": {
+"fiscalCode": {
+"type": "literal",
+"value": "XXX"
+}
+}
+},
+
+
+"INSERT_MEDICAL_STAFF_FISCAL_CODE": {
+"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Medical_Staff> {_:ZYX rdf:type sha:Medical_Staff ; sha:fiscalCode ?fiscalCode}}",
+"forcedBindings": {
+"fiscalCode": {
+"type": "literal",
+"value": "XXX"
+}
+}
+},
+
+
+"INSERT_USER_PSW": {
+"sparql": "INSERT {graph <http://unibo.it/ontology/SmartHospitalAssistant/Medical_Staff> {?h rdf:type sha:Medical_Staff ; sha:password ?psw ; sha:username ?user ; sha:fiscalCode ?fiscalCode}} WHERE {graph <http://unibo.it/ontology/SmartHospitalAssistant/Medical_Staff> {?h sha:fiscalCode ?fiscalCode ; rdf:type sha:Medical_Staff}}",
+"forcedBindings": {
+"fiscalCode": {
+"type": "literal",
+"value": "XXX"
+},
+"psw": {
+"type": "literal",
+"value": "tesina99"
+},
+"user": {
+"type": "literal",
+"value": "gianluca@gmail.com"
+}
+}
+},
+
+
+"DELETE_ALL": {
+"sparql": "DELETE {graph ?g {?s ?p ?o}} WHERE {graph ?g {?s ?p ?o}}"
+}
+},
+
+
+
+
+
+
+"queries": {
+
+"QUERY_ALL": {
+"sparql": "SELECT * WHERE {graph ?g { ?s ?p ?o }}"
+},
+
+
+"QUERY_ID_CCE_COMUNE": {
+"sparql": "SELECT (count(DISTINCT ?id) as ?last) WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/General_Section> {?g rdf:type sha:General_Section ; sha:id ?id }}"
+},
+
+
+"QUERY_ID_CCE_SPECIFICA": {
+"sparql": "SELECT (count(DISTINCT ?id) as ?last) WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Ward_Section> {?g rdf:type sha:Ward_Section ; sha:id ?id }}"
+},
+
+
+"QUERY_MEDICAL_STAFF_FISCAL_CODE": {
+"sparql": "SELECT ?cf WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Medical_Staff> {?h rdf:type sha:Medical_Staff ; sha:fiscalCode ?cf}}"
 },
 
 
@@ -160,10 +360,39 @@
 },
 
 
+"QUERY_CCE_COMUNE_FISCAL_CODE": {
+"sparql": "SELECT ?cf WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/General_Section> {?g rdf:type sha:General_Section ; sha:fiscalCode ?cf}}"
+},
+
+
 "QUERY_WARD": {
 "sparql": "SELECT ?ward WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Hospital_Ward> {?hospital_ward rdf:type sha:Hospital_Ward ; sha:wardName ?ward}}"
+},
+
+
+"QUERY_MEDICAL_STAFF_NAME": {
+"sparql": "SELECT ?givenName WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Medical_Staff> {?h rdf:type sha:Medical_Staff ; sha:givenName ?givenName}}"
+},
+
+
+"QUERY_MEDICAL_STAFF_SURNAME": {
+"sparql": "SELECT ?familyName WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Medical_Staff> {?h rdf:type sha:Medical_Staff ; sha:familyName ?familyName}}"
+},
+
+
+"ORA": {
+"sparql": "SELECT ?ora WHERE {BIND(now() AS ?ora)}"
+},
+
+
+"QUERY_ALL_MEDICAL_STAFF": {
+"sparql": "SELECT ?name ?surname WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Medical_Staff> {?h rdf:type sha:Medical_Staff ; sha:givenName ?name ; sha:familyName ?surname ; sha:fiscalCode ?cf}}"
+},
+
+
+"QUERY_DIAGNOSI_STATISTICHE": {
+"sparql": "SELECT ?diagn (count(?diagn) as ?last) WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/Ward_Section> {?g rdf:type sha:Ward_Section ; sha:diagn ?diagn }} GROUP BY ?diagn"
 }
 
-
-} 
+}
 }

@@ -74,7 +74,7 @@ def audio_bot(cosa_dire):
 
 def inizio():
     riconoscitore = speech_recognition.Recognizer()
-    #riconoscitore.energy_threshold = 340
+    riconoscitore.energy_threshold = 1100
     riconoscitore.dynamic_energy_threshold = False
     riconoscitore.pause_threshold = 0.5
     with speech_recognition.Microphone() as source:
@@ -156,9 +156,11 @@ def check_language(cont):
 
 def microfono_se_risponde():
     riconoscitore = speech_recognition.Recognizer()
+    riconoscitore.energy_threshold = 1100
+    riconoscitore.dynamic_energy_threshold = False
     riconoscitore.pause_threshold = 0.5
     with speech_recognition.Microphone() as source:
-        riconoscitore.adjust_for_ambient_noise(source, 0.5)
+        riconoscitore.adjust_for_ambient_noise(source)
         audio_bot("Ti ascolto")
         audio = riconoscitore.listen(source)
     try:
