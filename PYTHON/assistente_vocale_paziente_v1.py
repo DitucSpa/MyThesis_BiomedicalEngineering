@@ -39,7 +39,7 @@ ws.geometry('600x300')
 
 nome_assistente = "mario"
 nome_chiusura = "chiudi"
-valore_microfono = 500
+valore_microfono = 1000
 
 
 key_word = ['orari', 'orario', 'stanza', 'camera', 'studio', "numero di cellulare", "recapito telefonico", "telefono", "email", "reparto",
@@ -125,9 +125,9 @@ def response():
     user_label.configure(text=text)
     ws.update()
     if text.lower() == "cosa sai fare":
-        vocal_label.configure(text="Allora, posso aiutarti con:\norario di un Medico;\nstudio di un Medico;\nreparto di un Medico;\nrecapito di un Medico;\nin alternativa contatta il XXXXXX")
+        vocal_label.configure(text="Allora, posso aiutarti con:\norario di un Medico;\nstudio di un Medico;\nreparto di un Medico;\nrecapito di un Medico;\ncercare un termine medico su wikipedia;\nin alternativa contatta il XXXXXX")
         ws.update()
-        audio_bot("Allora, posso aiutarti con,orario di un Medico,studio di un Medico;\nreparto di un Medico,recapito di un Medico;\nin alternativa contatta il XXXXXX")
+        audio_bot("Allora, posso aiutarti con,orario di un Medico,studio di un Medico;\nreparto di un Medico,recapito di un Medico;\ncercare un termine medico su wikipedia;\n o in alternativa contatta il XXXXXX")
     elif "wikipedia" in text.lower():
         wiki(text.lower())
     else:

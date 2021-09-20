@@ -321,7 +321,7 @@ class Add_Patient(Frame):
                     isValidDate = False
                 a = datetime.datetime(int(year),int(month),int(day))
                 b = datetime.date.today()
-                if (b - a.date()).days == 0 or (b - a.date()).days < 0 or (b - a.date()).days < 365 * 18: # health worker must be over 18yo (365 days * 18)
+                if (b - a.date()).days == 0 or (b - a.date()).days < 0: # health worker must be over 18yo (365 days * 18)
                     isValidDate = False
             except ValueError:
                 isValidDate = False
@@ -485,6 +485,9 @@ class Add_CCE_Comune(Frame):
                 "blood": var_blood.get(),
                 "terapia": txt_terapia.get("1.0", "end-1c").replace("ì", "%%").replace("\n", "; ").replace(".", ":").replace(" ","&&"),
                 "allergie": txt_allergie.get("1.0", "end-1c").replace("ì", "%%").replace("\n", "; ").replace(".", ":").replace(" ","&&"),
+                "createFiscalMedical": CF,
+                "modFiscalMedical": CF,
+                "wardName": var_ward.get(),
                 "creation": ora,
                 "modify": ora}
             query_sparql.insert_one("INSERT_CCE_COMUNE", path, force)
@@ -525,6 +528,18 @@ class Add_CCE_Specifica(Frame):
         frame3.place(x=20, y=450)
         frame4.place(x=450, y=450)
         frame5.place(x=900, y=250)
+
+        ward = query_sparql.connessione("QUERY_WARD", path)
+        var_ward = StringVar()
+        h_ward = ward.replace("\n","|").split("|")
+        var_ward.set(h_ward[0]) # default --> first value
+        input_ward = OptionMenu(frame5, var_ward, *h_ward)
+        input_ward["menu"].config(bg=background_frame) # change color
+        input_ward.config(width=15, font=f, bg=background_frame, activebackground=background_frame)
+        input_ward["highlightthickness"]= 0 # disable the color of the background
+        Label(frame5, text = 'Reparto:', font=f, bg = background_frame).grid(row=3, column=0, pady=10, padx=20)
+        input_ward.grid(row=3, column=1, pady=10, padx=20)
+
 
         # declaration of label and text box for further information
         Label(frame, text = 'Diagnosi (ICD9-CM):', font=f, bg = background_frame).pack(pady=5)
@@ -585,16 +600,20 @@ class Add_CCE_Specifica(Frame):
                     return
             ora = query_sparql.connessione("ORA", path)
             force = {"cf": input_cod_fis.get().upper().replace(" ","_"),
-                "id": str(int(resultID) + 1),
+                "idSpec": str(int(resultID) + 1),
                 "plan": txt_piano.get("1.0", "end-1c").replace("ì", "%%").replace("\n", "; ").replace(".", ":").replace(" ","&&"),
                 "exam": txt_esami.get("1.0", "end-1c").replace("ì", "%%").replace("\n", "; ").replace(".", ":").replace(" ","&&"),
                 "dimission": txt_dimissione.get("1.0", "end-1c").replace("ì", "%%").replace("\n", "; ").replace(".", ":").replace(" ","&&"),
+                "createFiscalMedical": CF,
+                "modFiscalMedical": CF,
+                "wardName": var_ward.get(),
                 "creation": ora,
                 "modify": ora}
             query_sparql.insert_one("INSERT_CCE_SPECIFICA", path, force)
             for i in range(len(diagnosi)):
                 force = {"fiscalCode": input_cod_fis.get().upper().replace(" ","_"),
-                "diagn": str(diagnosi[i])}
+                "diagn": str(diagnosi[i]),
+                "idSpec": str(int(resultID) + 1)}
                 query_sparql.insert_one("INSERT_DIAGNOSI", path, force)
             # "diagn": txt_diagn.get("1.0", "end-1c").replace(" ","").replace("\n", ";"),
 
@@ -910,7 +929,7 @@ class Mod_Medical(Frame):
 
 # Main code
 app = tkinterApp()
-app.title('Tesi Di Tuccio -- Technician')
+app.title('Tesi Di Tuccio -- Medical Staff')
 app.geometry('1600x900')
 app.resizable(width=False, height=False)
 app.mainloop()

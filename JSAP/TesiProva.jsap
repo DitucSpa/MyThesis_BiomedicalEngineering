@@ -112,19 +112,19 @@
 "forcedBindings": {
 "fiscalCode": {
 "type": "literal",
-"value": "XXX"
+"value": "YYY"
 },
 "givenName": {
 "type": "literal",
-"value": "Gianluca"
+"value": "GIANLUCA"
 },
 "familyName": {
 "type": "literal",
-"value": "Di_Tuccio"
+"value": "DI_TUCCIO"
 },
 "address": {
 "type": "literal",
-"value": "Via Natale 20"
+"value": "Topogigio 20"
 },
 "birthDate": {
 "type": "literal",
@@ -132,7 +132,7 @@
 },
 "birthPlace": {
 "type": "literal",
-"value": "Cesena"
+"value": "CESENA"
 },
 "email": {
 "type": "literal",
@@ -190,7 +190,7 @@
 
 
 "INSERT_CCE_COMUNE": {
-"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/General_Section> {_:GS rdf:type sha:General_Section ; sha:id ?id ; sha:fiscalCode ?cf ; sha:allergie ?allergie ; sha:terapia ?terapia ; sha:bloodgroup ?blood ; sha:longDiseas ?diseas ; sha:resume ?resume ; sha:creationComune ?creation ; sha:modifyComune ?modify}}",
+"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/General_Section> {_:GS rdf:type sha:General_Section ; sha:id ?id ; sha:fiscalCode ?cf ; sha:allergie ?allergie ; sha:terapia ?terapia ; sha:bloodgroup ?blood ; sha:longDiseas ?diseas ; sha:resume ?resume ; sha:createFiscalCodeMedical ?createFiscalMedical ; sha:modifyFiscalCodeMedical ?modFiscalMedical ; sha:creationComune ?creation ; sha:modifyComune ?modify}}",
 "forcedBindings": {
 "cf": {
 "type": "literal",
@@ -220,6 +220,14 @@
 "type": "literal",
 "value": "Nothing"
 },
+"createFiscalMedical": {
+"type": "literal",
+"value": "YYY"
+},
+"modFiscalMedical": {
+"type": "literal",
+"value": "YYY"
+},
 "creation": {
 "type": "literal",
 "value": "Never"
@@ -233,19 +241,19 @@
 
 
 "INSERT_CCE_SPECIFICA": {
-"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Ward_Section> {_:WS rdf:type sha:Ward_Section ; sha:id ?id ; sha:fiscalCode ?cf ; sha:plan ?plan ; sha:exam ?exam ; sha:dimission ?dimission ; sha:creationSpecifica ?creation ; sha:modifySpecifica ?modify}}",
+"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Ward_Section> {_:WS rdf:type sha:Ward_Section ; sha:idSpec ?idSpec ; sha:wardName ?wardName ; sha:fiscalCode ?cf ; sha:createFiscalCodeMedical ?createFiscalMedical ; sha:modifyFiscalCodeMedical ?modFiscalMedical ; sha:plan ?plan ; sha:exam ?exam ; sha:dimission ?dimission ; sha:creationSpecifica ?creation ; sha:modifySpecifica ?modify}}",
 "forcedBindings": {
 "cf": {
 "type": "literal",
 "value": "XXX"
 },
-"id": {
+"idSpec": {
 "type": "literal",
 "value": "1"
 },
 "exam": {
 "type": "literal",
-"value": "Nothin"
+"value": "Nothing"
 },
 "plan": {
 "type": "literal",
@@ -254,6 +262,18 @@
 "dimission": {
 "type": "literal",
 "value": "Nothing"
+},
+"wardName": {
+"type": "literal",
+"value": "Cardiologia"
+},
+"createFiscalMedical": {
+"type": "literal",
+"value": "YYY"
+},
+"modFiscalMedical": {
+"type": "literal",
+"value": "YYY"
 },
 "creation": {
 "type": "literal",
@@ -268,7 +288,7 @@
 
 
 "INSERT_DIAGNOSI":{
-"sparql": "INSERT {graph <http://unibo.it/ontology/SmartHospitalAssistant/Ward_Section> {?h rdf:type sha:Ward_Section ; sha:diagn ?diagn ; sha:fiscalCode ?fiscalCode}} WHERE {graph <http://unibo.it/ontology/SmartHospitalAssistant/Ward_Section> {?h sha:fiscalCode ?fiscalCode ; rdf:type sha:Ward_Section}}",
+"sparql": "INSERT {graph <http://unibo.it/ontology/SmartHospitalAssistant/Ward_Section> {?h rdf:type sha:Ward_Section ; sha:diagn ?diagn ; sha:fiscalCode ?fiscalCode ; sha:idSpec ?idSpec}} WHERE {graph <http://unibo.it/ontology/SmartHospitalAssistant/Ward_Section> {?h sha:fiscalCode ?fiscalCode ; sha:idSpec ?idSpec ; rdf:type sha:Ward_Section}}",
 "forcedBindings": {
 "fiscalCode": {
 "type": "literal",
@@ -277,6 +297,10 @@
 "diagn": {
 "type": "literal",
 "value": "001"
+},
+"idSpec": {
+"type": "literal",
+"value": "1"
 }
 }
 },
@@ -298,7 +322,7 @@
 "forcedBindings": {
 "fiscalCode": {
 "type": "literal",
-"value": "XXX"
+"value": "YYY"
 }
 }
 },
@@ -309,7 +333,7 @@
 "forcedBindings": {
 "fiscalCode": {
 "type": "literal",
-"value": "XXX"
+"value": "YYY"
 },
 "psw": {
 "type": "literal",
