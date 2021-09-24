@@ -345,7 +345,7 @@ class Add_Patient(Frame):
                 Mbox('Attenzione!', "La nazionalità inserita non è corretta.")
                 return
             # check fiscal code
-            if len(input_cod_fis.get().replace(" ", "")) != 16:
+            if not codicefiscale.is_valid(input_cod_fis.get().replace(" ", "")):
                 Mbox('Attenzione!', 'Il codice fiscale inserito non è corretto.')
                 return
             # check email
@@ -356,6 +356,7 @@ class Add_Patient(Frame):
             if not (input_recapito.get().isnumeric()):
                 Mbox('Attenzione!', 'Numero di telefono non valido.')
                 return
+
 
             # message box with all parametres
             stringa = 'I seguenti dati sono corretti?\n'
@@ -461,6 +462,7 @@ class Add_CCE_Comune(Frame):
         # declaration of message box; there are three parametres --> title, text of the message and style (0 for OK, 1 for OK - CANCEl, ...)
         def Mbox(title, text):
             return messagebox.showerror(title=title, message=text, icon = 'error')
+
 
         def controllo():
             resultID = query_sparql.connessione("QUERY_ID_CCE_COMUNE", path)

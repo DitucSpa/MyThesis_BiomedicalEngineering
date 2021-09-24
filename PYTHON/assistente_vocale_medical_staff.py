@@ -53,7 +53,7 @@ background_window = "#b3ccff" # background of the window
 
 nome_assistente = "mario"
 nome_chiusura = "chiudi"
-valore_microfono = 1000
+valore_microfono = 0
 
 
 key_word = ['orari', 'orario', 'stanza', 'camera', 'studio', "numero di cellulare", "recapito telefonico", "telefono", "email", "reparto",

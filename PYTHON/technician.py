@@ -17,7 +17,7 @@ import re
 import datetime
 from datetime import date
 import os
-
+from codicefiscale import codicefiscale
 import query_sparql
 
 
@@ -255,7 +255,7 @@ class StartPage(Frame):
                 Mbox('Attenzione!', "L'indirizzo inserito non è corretto.")
                 return
             # check fiscal code
-            if len(input_cod_fis.get().replace(" ", "")) != 16:
+            if not codicefiscale.is_valid(input_cod_fis.get().replace(" ", "")):
                 Mbox('Attenzione!', 'Il codice fiscale inserito non è corretto.')
                 return
             # check email

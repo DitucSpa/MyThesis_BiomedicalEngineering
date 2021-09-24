@@ -178,8 +178,74 @@
 },
 
 
+"MODIFY_MEDICAL_STAFF":{
+"sparql": "DELETE {graph <http://unibo.it/ontology/SmartHospitalAssistant/Medical_Staff> {?h rdf:type sha:Medical_Staff ; sha:address ?address ; sha:email ?email ; sha:emailWork ?workMail ; sha:gender ?gender ; sha:role ?role; sha:timeSchedule  ?timeSchedule ; sha:phoneNumber ?phoneNumber ; sha:phoneNumberWork ?workPhone ; sha:studio ?studio ; sha:otherWorker ?otherWorker ; sha:wardName ?wardName}} WHERE {graph <http://unibo.it/ontology/SmartHospitalAssistant/Medical_Staff>{?h sha:fiscalCode ?fiscalCode ; rdf:type sha:Medical_Staff}}   INSERT {graph <http://unibo.it/ontology/SmartHospitalAssistant/Medical_Staff> {?h rdf:type sha:Medical_Staff ; sha:givenName ?givenName ; sha:address ?address ; sha:familyName ?familyName ; sha:birthDate ?birthDate; sha:birthPlace ?birthPlace ; sha:email ?email ; sha:emailWork ?workMail ; sha:gender ?gender ; sha:role ?role; sha:timeSchedule ?timeSchedule ; sha:phoneNumber ?phoneNumber ; sha:phoneNumberWork ?workPhone ; sha:studio ?studio ; sha:otherWorker ?otherWorker ; sha:wardName ?wardName ; sha:fiscalCode ?fiscalCode}} WHERE {graph <http://unibo.it/ontology/SmartHospitalAssistant/Medical_Staff> {?h sha:fiscalCode ?fiscalCode ; rdf:type sha:Medical_Staff}}",
+"forcedBindings": {
+"fiscalCode": {
+"type": "literal",
+"value": "YYY"
+},
+"address": {
+"type": "literal",
+"value": "Topogigio 20"
+},
+"email": {
+"type": "literal",
+"value": "gianluca@outlook.it"
+},
+"workMail": {
+"type": "literal",
+"value": "gianluca@outlook.it"
+},
+"gender": {
+"type": "literal",
+"value": "Maschio"
+},
+"phoneNumber": {
+"type": "literal",
+"value": "333333"
+},
+"workPhone": {
+"type": "literal",
+"value": "333333"
+},
+"wardName": {
+"type": "literal",
+"value": "Cardiologia"
+},
+"role": {
+"type": "literal",
+"value": "Doctor"
+},
+"studio": {
+"type": "literal",
+"value": "Stanza 5"
+},
+"otherWorker": {
+"type": "literal",
+"value": "Nothing"
+},
+"timeSchedule": {
+"type": "literal",
+"value": "Lunedi dalle 8 alle 9"
+}
+}
+},
+
+
 "INSERT_WARD": {
-"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Hospital_Ward> {_:WARD rdf:type sha:Hospital_Ward ; sha:wardName ?wardName}}",
+"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Hospital_Ward> {_:WARD rdf:type sha:Hospital_Ward ; sha:wardName ?wardName}} ",
+"forcedBindings": {
+"wardName": {
+"type": "literal",
+"value": "Cardiologia"
+}
+}
+},
+
+
+"INSERT_Prova": {
+"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Hospital_Ward> {?h Hospital_Ward rdf:type sha:Hospital_Ward ; sha:wardName ?wardName}}  WHERE {graph <http://unibo.it/ontology/SmartHospitalAssistant/Hospital_Ward> {?h rdf:type sha:Hospital_Ward}}",
 "forcedBindings": {
 "wardName": {
 "type": "literal",

@@ -1,8 +1,11 @@
+# USE_WIKIPEDIA.PY
+# This module is used for check if a wiki page exists or to return page and close it then
+
+
 import wikipedia
-import webbrowser
+# import webbrowser
 import os
-from time import sleep
-from googlesearch import search
+# from googlesearch import search
 import requests
 
 
