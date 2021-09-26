@@ -11,6 +11,7 @@ import query_sparql
 import create_sparql
 import getpass
 import icd9_package
+from codicefiscale import codicefiscale
 
 
 # other declarations

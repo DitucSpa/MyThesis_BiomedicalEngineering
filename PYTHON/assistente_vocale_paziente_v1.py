@@ -39,7 +39,7 @@ ws.geometry('600x300')
 
 nome_assistente = "mario"
 nome_chiusura = "chiudi"
-valore_microfono = 1000
+valore_microfono = 1600
 
 
 key_word = ['orari', 'orario', 'stanza', 'camera', 'studio', "numero di cellulare", "recapito telefonico", "telefono", "email", "reparto",

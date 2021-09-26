@@ -3,7 +3,7 @@
 
 
 import wikipedia
-# import webbrowser
+import webbrowser
 import os
 # from googlesearch import search
 import requests

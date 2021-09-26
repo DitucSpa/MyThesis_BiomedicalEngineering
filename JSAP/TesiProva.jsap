@@ -244,17 +244,6 @@
 },
 
 
-"INSERT_Prova": {
-"sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/Hospital_Ward> {?h Hospital_Ward rdf:type sha:Hospital_Ward ; sha:wardName ?wardName}}  WHERE {graph <http://unibo.it/ontology/SmartHospitalAssistant/Hospital_Ward> {?h rdf:type sha:Hospital_Ward}}",
-"forcedBindings": {
-"wardName": {
-"type": "literal",
-"value": "Cardiologia"
-}
-}
-},
-
-
 "INSERT_CCE_COMUNE": {
 "sparql": "INSERT DATA {graph <http://unibo.it/ontology/SmartHospitalAssistant/General_Section> {_:GS rdf:type sha:General_Section ; sha:id ?id ; sha:fiscalCode ?cf ; sha:allergie ?allergie ; sha:terapia ?terapia ; sha:bloodgroup ?blood ; sha:longDiseas ?diseas ; sha:resume ?resume ; sha:createFiscalCodeMedical ?createFiscalMedical ; sha:modifyFiscalCodeMedical ?modFiscalMedical ; sha:creationComune ?creation ; sha:modifyComune ?modify}}",
 "forcedBindings": {
