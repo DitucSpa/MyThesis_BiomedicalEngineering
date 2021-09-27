@@ -5,13 +5,13 @@ a folder with my python files, a folder with owl files and a folder with jsap fi
 
 
 
-
+            
 **_HOW TO USE THIS THESIS_**
 
 
 _First Step:_
 Download and install Git from this link: https://git-scm.com/downloads
-Use GitBash (or cmd) for cloning and pushing files
+Use GitBash (or cmd) for cloning and pushing files    
 Download and install SEPABins --> https://github.com/arces-wot/SEPABins
 
 
