@@ -29,6 +29,7 @@ Download and instal these packages inside Python folder (ex. C:\Users\(your_user
 - python -m pip install playsound==1.2.2 (other versions have problem with microphone for virtual machine)
 - for installing pyaudio go to https://www.lfd.uci.edu/~gohlke/pythonlibs/ --> PyAudio and install the whl files
 (for example I've used PyAudio‑0.2.11‑cp39‑cp39‑win_amd64.whl). Then digit  python -m pip install (paste here that file)
+- pip3 install sepy (inside Scripts folder; ex. C:\Users\(your_user_name)\AppData\Local\Programs\Python\Python39\Scripts)
 If you have problems with "C++ 14.0 is required", go to https://visualstudio.microsoft.com/it/visual-cpp-build-tools/
 
 
