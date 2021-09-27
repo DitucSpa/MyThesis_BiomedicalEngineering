@@ -7,7 +7,7 @@ import speech_recognition
 def understand(valore_microfono, parA, parB, lang, pause):
     riconoscitore = speech_recognition.Recognizer()
     riconoscitore.energy_threshold = valore_microfono
-    riconoscitore.dynamic_energy_threshold = False
+    #riconoscitore.dynamic_energy_threshold = False
     riconoscitore.pause_threshold = pause
     with speech_recognition.Microphone() as source:
         riconoscitore.adjust_for_ambient_noise(source)

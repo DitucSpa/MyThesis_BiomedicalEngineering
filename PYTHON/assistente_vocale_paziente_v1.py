@@ -29,8 +29,8 @@ import use_wikipedia
 from time import sleep
 
 
-path = r"C:\Users\Ovettino\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP\TesiProva.jsap" # path of JSAP file
-path_new = r"C:\Users\Ovettino\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP"
+path = r"C:\Users\raffa\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP\TesiProva.jsap" # path of JSAP file
+path_new = r"C:\Users\raffa\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP"
 f = ('Times', 14) # font
 ws = Tk()
 ws.title('Tesi Di Tuccio -- Assistente Vocale Paziente')
@@ -39,7 +39,7 @@ ws.geometry('600x300')
 
 nome_assistente = "mario"
 nome_chiusura = "chiudi"
-valore_microfono = 1600
+valore_microfono = 300
 
 
 key_word = ['orari', 'orario', 'stanza', 'camera', 'studio', "numero di cellulare", "recapito telefonico", "telefono", "email", "reparto",

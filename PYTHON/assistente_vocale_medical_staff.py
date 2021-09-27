@@ -38,16 +38,16 @@ from tkinter import ttk
 
 
 
-path = r"C:\Users\Ovettino\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP\TesiProva.jsap" # path of JSAP file
-path_new = r"C:\Users\Ovettino\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP"
+path = r"C:\Users\raffa\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP\TesiProva.jsap" # path of JSAP file
+path_new = r"C:\Users\raffa\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP"
 f = ('Times', 14) # font
 ws = Tk()
 ws.title('Tesi Di Tuccio -- Assistente Vocale Medico')
-ws.geometry('1460x900')
-CF = "DTCGLC99C29C573A"
+ws.geometry('1366x768')
+CF = "YYY"
+#CF = "DTCGLC99C29C573A"
 background_frame = "#80b3ff" # background of the frame
 background_window = "#b3ccff" # background of the window
-
 
 string_to_number = ["zero","uno","due","tre","quattro","cinque","sei","sette","otto","nove"]
 string_to_month = ["GENNAIO","FEBBRAIO","MARZO","APRILE","MAGGIO","GIUGNO","LUGLIO","AGOSTO","SETTEMBRE","OTTOBRE","NOVEMBRE","DICEMBRE"]
@@ -58,7 +58,7 @@ string_to_year = ["2018","2019","2020","2021"]
 
 nome_assistente = "mario"
 nome_chiusura = "chiudi"
-valore_microfono = 1000
+valore_microfono = 300
 
 
 key_word = ['orari', 'orario', 'stanza', 'camera', 'studio', "numero di cellulare", "recapito telefonico", "telefono", "email", "reparto",
@@ -144,6 +144,9 @@ def response():
 
 
 def check(text):
+    sleeping_duck()
+    ws.update()
+    print(text)
     for x in text.split(" "):
         if x == "paziente":
             check_paziente()
@@ -164,6 +167,9 @@ def check(text):
     if "cartella" in text.split(" ") or "cartelle" in text.split(" "):
         check_cartella(text.lower())
         return
+    vocal_label.configure(text="Mi dispiace, non ho capito")
+    ws.update()
+    audio_bot("Mi dispiace, non ho capito")
 
 
 def check_paziente():
@@ -190,15 +196,16 @@ def check_paziente():
     name_query = '"QUERY"'
     stringa = name_query + ': { "sparql": ' + stringa + '}'
     stringa = create_sparql.creating(path_new, stringa)
-    stringa = stringa.replace("%%", "ì").replace("&&"," ").replace("&"," ").replace("T00:00:00","").replace("\n",";\n")
+    stringa = stringa.replace("%%", "ì").replace("&&"," ").replace("&"," ").replace("T00:00:00","").replace("\n",";\n").replace("_"," ")
     if stringa == "":
         vocal_label.configure(text="Mi dispiace, non ho trovato questo paziente")
         ws.update()
         audio_bot("Mi dispiace, non ho trovato questo paziente")
+        frame.destroy()
         return
     vocal_label.configure(text="Ho trovato i seguenti dati:\n"+stringa.replace(";",""))
     ws.update()
-    audio_bot("Ho trovato i seguenti dati;\n"+stringa)
+    audio_bot("Ho trovato i seguenti dati;\n"+stringa.replace("/",";"))
 
 
     # frame 3 for General Ward patient info
@@ -236,13 +243,16 @@ def check_paziente():
 
 
     # creation frame for tree view for Ward Section
-    frame2 = Frame(ws, bd = 2, relief = SOLID, padx = 5, pady = 5)
+    ws2 = Tk()
+    ws2.title('Tesi Di Tuccio -- Sezione Socio Sanitaria Specifica')
+    ws2.geometry('1250x350')
+    frame2 = Frame(ws2, bd = 2, relief = SOLID, padx = 5, pady = 5)
     frame2.config(bg = background_frame)
-    frame2.place(x=20, y=600)
+    frame2.place(x=20, y=20)
     Label(frame2, text="Sezioni Socio Sanitaria Specifica", font=f, bg=background_frame).grid(row=0, column=0, sticky=W, pady=10)
     columns = ('#1', '#2','#3', '#4','#5', '#6')
     # tree view for Ward Section
-    tree = ttk.Treeview(ws, columns=columns, show='headings')
+    tree = ttk.Treeview(ws2, columns=columns, show='headings')
     vsb = ttk.Scrollbar(orient="vertical",
                 command=tree.yview)
     tree.configure(yscrollcommand=vsb.set)
@@ -290,6 +300,7 @@ def check_paziente():
     frame2.destroy()
     frame3.destroy()
     frame4.destroy()
+    ws2.destroy()
     sleeping_duck()
 
 
@@ -313,7 +324,7 @@ def check_dottore():
 
 
     # checking if there aren't your Sections
-    if general_string == "" and ward_string == "":
+    if general_string == [''] and ward_string == ['']:
         vocal_label.configure(text="Mi dispiace, non ho trovato alcuna tua cartella clinica")
         ws.update()
         audio_bot("Mi dispiace, non ho trovato alcuna tua cartella clinica")
@@ -331,11 +342,17 @@ def check_dottore():
                     command=tree.yview)
     tree.configure(yscrollcommand=vsb.set)
     tree.heading('#1', text='ID Comune')
+    tree.column('#1', width=100, stretch = NO)
     tree.heading('#2', text='Codice Fiscale')
+    tree.column('#2', width=100, stretch = NO)
     tree.heading('#3', text='Data Creazione')
+    tree.column('#3', width=100, stretch = NO)
     tree.heading('#4', text='Creata da')
+    tree.column('#4', width=100, stretch = NO)
     tree.heading('#5', text='Data Modifica')
+    tree.column('#5', width=100, stretch = NO)
     tree.heading('#6', text='Modificata da')
+    tree.column('#6', width=100, stretch = NO)
     tree.grid(column=0, row=1, sticky='nsew', in_=frame)
     general_result =[]
     for i in range(0, len(general_string), 6):
@@ -353,7 +370,7 @@ def check_dottore():
     # creation frame and treeview for ward section
     frame2 = Frame(ws, bd = 2, relief = SOLID, padx = 5, pady = 5)
     frame2.config(bg = background_frame)
-    frame2.place(x=20, y=600)
+    frame2.place(x=650, y=300)
     Label(frame2, text="Sezioni Socio Sanitaria Specifica", font=f, bg=background_frame).grid(row=0, column=0, sticky=W, pady=10)
     columns = ('#1', '#2','#3', '#4','#5', '#6','#7')
     tree2 = ttk.Treeview(ws, columns=columns, show='headings')
@@ -361,12 +378,19 @@ def check_dottore():
                     command=tree.yview)
     tree2.configure(yscrollcommand=vsb2.set)
     tree2.heading('#1', text='ID Specifica')
+    tree2.column('#1', width=100, stretch = NO)
     tree2.heading('#2', text='Codice Fiscale')
+    tree2.column('#2', width=100, stretch = NO)
     tree2.heading('#3', text='Reparto')
+    tree2.column('#3', width=100, stretch = NO)
     tree2.heading('#4', text='Data Creazione')
+    tree2.column('#4', width=100, stretch = NO)
     tree2.heading('#5', text='Creata da')
+    tree2.column('#5', width=100, stretch = NO)
     tree2.heading('#6', text='Data Modifica')
+    tree2.column('#6', width=100, stretch = NO)
     tree2.heading('#7', text='Modificata da')
+    tree2.column('#7', width=100, stretch = NO)
     tree2.grid(column=0, row=1, sticky='nsew', in_=frame2)
     ward_result =[]
     for i in range(0, len(ward_string), 7):
@@ -489,7 +513,7 @@ def check_reparto(text):
                         # creation frame and treeview for ward section
                         frame2 = Frame(ws, bd = 2, relief = SOLID, padx = 5, pady = 5)
                         frame2.config(bg = background_frame)
-                        frame2.place(x=20, y=600)
+                        frame2.place(x=650, y=300)
                         Label(frame2, text="Sezioni Socio Sanitaria Specifica", font=f, bg=background_frame).grid(row=0, column=0, sticky=W, pady=10)
                         columns = ('#1', '#2','#3')
                         tree2 = ttk.Treeview(ws, columns=columns, show='headings')
@@ -699,7 +723,7 @@ def check_icd9(text):
                 code_icd9 = str(icd9_package.search_diagn(y))
                 audio_bot(code_icd9.replace(":",";"))
                 return
-    vocal_label.configure(text="Mi dispiace, ma il codice icd9-cm che mi hai detto non è valido")
+    vocal_label.configure(text="Mi dispiace, ma il codice ICD9-CM che mi hai detto non è valido")
     ws.update()
     audio_bot("Mi dispiace, ma il codice icd9-cm che mi hai detto non è valido")
 

@@ -19,8 +19,8 @@ f = ('Times', 14) # the font of the program
 background_frame = "#80b3ff" # background of the frame
 background_window = "#b3ccff" # background of the window
 regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b' # it's used for checking email
-path = r"C:\Users\Ovettino\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP\TesiProva.jsap" # path of JSAP file
-path_new = r"C:\Users\Ovettino\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP" # path used for temp file
+path = r"C:\Users\raffa\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP\TesiProva.jsap" # path of JSAP file
+path_new = r"C:\Users\raffa\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP" # path used for temp file
 CF = "DTCGLC99C29C573A" # fake login
 
 
