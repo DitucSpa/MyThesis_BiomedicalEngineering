@@ -5,21 +5,22 @@ a folder with my python files, a folder with owl files and a folder with jsap fi
 
 
 
-HOW TO USE THIS THESIS
+
+**_HOW TO USE THIS THESIS_**
 
 
-First Step:
+_First Step:_
 Download and install Git from this link: https://git-scm.com/downloads
 Use GitBash (or cmd) for cloning and pushing files
 Download and install SEPABins --> https://github.com/arces-wot/SEPABins
 
 
-Second Step:
+_Second Step:_
 Download and install this repository --> https://github.com/DitucSpa/MyThesis_BiomedicalEngineering.git
 Download and install Python (see pdf file named "HowToInstallPython.pdf" inside HowToInstall folder)
 
 
-Third Step:
+_Third Step:_
 Download and instal these packages inside Python folder (ex. C:\Users\(your_user_name)\AppData\Local\Programs\Python\Python39)
 - python -m pip install wikipedia
 - python -m pip install gTTS
@@ -31,7 +32,7 @@ Download and instal these packages inside Python folder (ex. C:\Users\(your_user
 If you have problems with "C++ 14.0 is required", go to https://visualstudio.microsoft.com/it/visual-cpp-build-tools/
 
 
-Fourth Step:
+_Fourth Step:_
 With any Python Editors change the paths (ex. you will find path = "something" and you need to change this
 value with your folder's path) inside the scripts of:
 - assistente_vocale_medical_staff.py
