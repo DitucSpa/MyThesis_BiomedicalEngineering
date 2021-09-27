@@ -13,6 +13,7 @@ from sepy import *
 import json
 from sepy.SEPA import *
 
+
 # for deleting files
 import os
 
@@ -58,6 +59,7 @@ def insert_one(sparql_query, path, force_binding):
         forcedBindings=force_binding)
 
 
+# it' used for creating customized query
 def other_query(path_jsap, sparql_query, path):
     mySAP = open(path,"r")
     sap = SAPObject(json.load(mySAP))
