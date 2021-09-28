@@ -36,8 +36,8 @@ Download and instal these packages inside Python folder (ex. C:\Users\(your_user
 - pip3 install sepy (inside Scripts folder; ex. C:\Users\(your_user_name)\AppData\Local\Programs\Python\Python39\Scripts)
 If you have any problems with "C++ 14.0 is required", go to https://visualstudio.microsoft.com/it/visual-cpp-build-tools/
 <br/>
+_Fourth Step:_  
 <br/>
-_Fourth Step:_
 With any Python Editors change the paths (ex. you will find path = "something" and you need to change this
 value with your folder's path) inside the scripts of:
 - assistente_vocale_medical_staff.py
