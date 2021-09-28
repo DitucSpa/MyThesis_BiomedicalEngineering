@@ -1,11 +1,16 @@
 # MyThesis_BiomedicalEngineering
 This is my thesis. Luca Roffia (https://github.com/lroffia) and Elisa Riforgiato have collaborated with this thesis.
-Here you can find my thesis' files. There are: an installation file (for installing Virtual Box on macOS), 
+Here you can find my thesis' files. There are: an installation file (for installing Virtual Box on macOS),
 a folder with my python files, a folder with owl files and a folder with jsap files.
 
 
+         ,~~.
+ ,      (  - )>
+)  `~~~~'   (
+(  .__)      )
+`-.________,'
 
-            
+
 **_HOW TO USE THIS THESIS_**
 
 
@@ -41,3 +46,13 @@ value with your folder's path) inside the scripts of:
 - health_worker.py
 - technician.py
 You must have a microphone and an internet connection for using this project.
+
+You can taste JSAP file with _Dashboard_ (SEPABins)
+
+This vocal assistant can't replace the job of doctors or secretaries, but it can help patient and medical Staff
+whit searching many medical information (Medical Records, Patient's info, etc).
+I've written this vocal assistant with ONTOLOGY and SEPA, for proving the easy use of ontology instead the use of
+SQL for creating databases. In fact, databases written in SQL have many problems with modification of their structures,
+but with ontology (and graphs) users can create or update their data structure with easy procedures. For creating
+ontology I've used Protégé and for creating graphs I've used SEPA with JSAP file (a configuration file with sparql
+queries and updates).

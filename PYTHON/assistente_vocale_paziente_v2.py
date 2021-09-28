@@ -1,5 +1,7 @@
-# questo assistente vocale verrà in aiuto a tutte quelle persone che non riescono a trovare un dottore, non conoscono il suo contatto,
-# non sanno dove si trovi, ecc
+# ASSISTENTE_VOCALE_PAZIENTE_V2_PY
+# it' a preliminary version of international vocal assistant
+# this program uses Google Translate for understanding a language
+# it's a different version of "assistente_vocale_paziente_v1.py"
 
 #librerie ed import
 from tkinter import *

@@ -1,13 +1,25 @@
-# Software helps patients to find email, phone number, time schedule of doctors
-# https://www.codesofinterest.com/2017/04/energy-threshold-calibration-in-speech-recognition.html
-# Remeber to active SEPA and to se the value of microphone (noise level)
+# ASSISTENTE_VOCALE_MEDICAL_STAF.PY
+# Qusto programma permetterà di fornire aiuto extra agli operatori sanitari in ospedale.
+# l'operatore potrà rivolgersi in qualunque forma all'assistente (MARIO), il quale
+# gli fornirà delle risposte attraverso l'uso di form filling ad hoc.
+# Spesso capita che un operatore sanitario debba conoscere l'uso di tanti programmi
+# per poter richiedere informazioni su pazienti, cartelle cliniche, reparti, ecc.
+# Mario permetterà di ricevere risposte quali: dati su cartelle cliniche (comuni e specifiche),
+# dati su pazienti, dati personali, informazioni e statistiche su alcune diagnosi (ICD9-CM).
+# NON E' STATA USATA ALCUNA CLASSE --> si consiglia di realizzare tale software con l'aiuto di classi
+
 
 # packages for tkinter
 from tkinter import *
+import tkinter.font as tkFont
+from tkinter import ttk
 
-# packages for writing files
+
+# import for system stuffes
 import os
 import sys
+from time import sleep
+
 
 # packages used for speech recognition
 import playsound
@@ -15,56 +27,59 @@ import time
 from gtts import gTTS
 import speech_recognition
 
-# package for usign Microphone
+
+# package for using Microphone
 import use_microphone
 
-# package for using SEPA
-import query_sparql
 
-# for creating a new document with sparql_query
+# package for quering datas with SEPA
+import query_sparql
+# for creating a new document with sparql_query whit SEPA
 import create_sparql
 
 
+# ICD9-CM standard
 import icd9_package
+
+
 #https://github.com/fabiocaccamo/python-codicefiscale
 from codicefiscale import codicefiscale
 
-from time import sleep
 
-from time import sleep
-import tkinter.font as tkFont
-from tkinter import ttk
-
-
-
-
-path = r"C:\Users\raffa\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP\TesiProva.jsap" # path of JSAP file
+# path of JSAP file "TesiProva.jsap"
+path = r"C:\Users\raffa\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP\TesiProva.jsap"
+# path for creating customized JSAP query
 path_new = r"C:\Users\raffa\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP"
+
+
+# some variables used for customizing windows
 f = ('Times', 14) # font
 ws = Tk()
 ws.title('Tesi Di Tuccio -- Assistente Vocale Medico')
 ws.geometry('1366x768')
-CF = "YYY"
-#CF = "DTCGLC99C29C573A"
+CF = "DTCGLC99C29C573A" # codice fiscale del medico che accede all'applicazione
 background_frame = "#80b3ff" # background of the frame
 background_window = "#b3ccff" # background of the window
 
+
+# vettori per convertire stringhe in numeri (come i mesi dell'anno)
 string_to_number = ["zero","uno","due","tre","quattro","cinque","sei","sette","otto","nove"]
 string_to_month = ["GENNAIO","FEBBRAIO","MARZO","APRILE","MAGGIO","GIUGNO","LUGLIO","AGOSTO","SETTEMBRE","OTTOBRE","NOVEMBRE","DICEMBRE"]
 string_to_year = ["2018","2019","2020","2021"]
 
 
+# variables used for vocal assistant
+nome_assistente = "mario" # name
+nome_chiusura = "chiudi" # word for closing vocal assistant
+valore_microfono = 300 # level of energy (microphone)
 
 
-nome_assistente = "mario"
-nome_chiusura = "chiudi"
-valore_microfono = 300
-
-
+# key word for using vocal assistent. In other cases vocal assistent doesn't respond
 key_word = ['orari', 'orario', 'stanza', 'camera', 'studio', "numero di cellulare", "recapito telefonico", "telefono", "email", "reparto",
     'dove', "dov'è", 'giorni', 'oggi', 'domani', 'cerco', 'sto cercando', 'mail']
 
 
+# body of vocal assistant in sleep mode
 duck_sleep = r"""
            ,~~.
  ,       (  -     )>
@@ -72,6 +87,7 @@ duck_sleep = r"""
 (    .__)        )
  `-.________,'
 """
+# body of vocal assistant in active mode
 duck_talk = r"""
            ,~~.
  ,       (  °     )<
@@ -172,6 +188,7 @@ def check(text):
     audio_bot("Mi dispiace, non ho capito")
 
 
+# this function is used for searching info about patients
 def check_paziente():
     frame = Frame(ws, bd = 2, relief = SOLID, padx = 5, pady = 5)
     frame.config(bg = background_frame)
@@ -304,6 +321,7 @@ def check_paziente():
     sleeping_duck()
 
 
+# this function is used for searching all your medical records which you have written
 def check_dottore():
     # program searches all your General Sections
     general_string = '"SELECT ?id ?cf ?create ?medicalCreate ?mod ?medicalMod WHERE {GRAPH <http://unibo.it/ontology/SmartHospitalAssistant/General_Section> {?p rdf:type sha:General_Section ; sha:id ?id ; sha:fiscalCode ?cf ; sha:creationComune ?create ; sha:createFiscalCodeMedical ?medicalCreate ; sha:modifyComune ?mod ; sha:modifyFiscalCodeMedical ?medicalMod . '

@@ -1,3 +1,15 @@
+# HEALTH_WORKER.PY
+# Questo software permette l'inserimento dei dati diagnostici riferiti a:
+# pazienti, cartelle cliniche e modifiche dei dati personali.
+# Inserimento dei pazienti avviene tramite l'utilizzo del file JSAP, come per le cartelle cliniche.
+# Una volta controllato che il dato non esista, lo inscerisce.
+# Cartella clinica comune --> Sezione Socio Sanitaria Comune.
+# Cartella clinica specifica --> Sezione Socio Sanitaria Specifica
+# Per inserire una cartella clinica specifica è necessario prima di tutto inserire
+# i dati di una cartella clinica comune, dopo aver inserito i dati del paziente.
+# Molte parti possono essere ottimizzate e scritte con una miglior sintassi
+
+
 # packages for tkinter
 import tkinter
 from tkinter import ttk
@@ -21,7 +33,7 @@ background_window = "#b3ccff" # background of the window
 regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b' # it's used for checking email
 path = r"C:\Users\raffa\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP\TesiProva.jsap" # path of JSAP file
 path_new = r"C:\Users\raffa\Downloads\GitHub\MyThesis_BiomedicalEngineering\JSAP" # path used for temp file
-CF = "DTCGLC99C29C573A" # fake login
+CF = "DTCGLC99C29C573A" # fake login (only this fiscal code can log into this program)
 
 
 class tkinterApp(Tk):
