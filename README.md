@@ -1,4 +1,6 @@
 # MyThesis_BiomedicalEngineering
+Il codice Python non è ottimizzato; si potrebbero usare alcuni metodi o funzioni per semplificare le computazioni.
+
 ![Screenshot (1)](https://user-images.githubusercontent.com/90385079/135077961-e8f0e8c9-e789-4a89-bcd8-feeaa0dd73f8.png)
 <br/>
 <br/>
