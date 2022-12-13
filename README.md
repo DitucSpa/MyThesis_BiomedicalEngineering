@@ -1,7 +1,10 @@
 # MyThesis_BiomedicalEngineering
 Il codice Python non è ottimizzato; si potrebbero usare alcuni metodi o funzioni per semplificare le computazioni.
 Implementare il codice per eseguire i requirement dei pacchetti automaticamente.
-Migliorare gestione interrupt-polling.
+Migliorare gestione interrupt-polling.<br>
+
+problem pyaudio apple M1 --> https://stackoverflow.com/questions/73268630/error-could-not-build-wheels-for-pyaudio-which-is-required-to-install-pyprojec
+<br>
 
 ![Screenshot (1)](https://user-images.githubusercontent.com/90385079/135077961-e8f0e8c9-e789-4a89-bcd8-feeaa0dd73f8.png)
 <br/>
